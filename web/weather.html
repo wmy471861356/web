@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">       
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>运动</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/tooplate.css">
+    <style>  
+  
+</style>
+</head>
+<body id="login">
+
+  
+
+    <div class="container">
+        <div class="row tm-register-row tm-mb-35">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 tm-login-l">
+                
+                    <div class="input-field">
+                    
+                        <input type="text" id="txt" class="validate tm-input-white-bg" placeholder="请输入你所在的城市"/>
+                    </div>
+              
+                        <button type="submit" class="waves-effect btn-large btn-large-white px-4 black-text rounded-0" id="sub">提交</button>
+                    
+            </div>
+            </div>
+           
+                    <h3 class="mt-0 text-white font-weight-light">今日天气</h3>
+                    <div>
+        <p id='city'></p>
+        <p id="date"></p>
+        <p id='time'></p>
+        <p id='air_level'></p>
+        <p id='tem'></p>
+        <p id='win'></p>
+        <p id='humidity'></p>
+        <p id='air_pm25'></p>
+        <p id='tips'></p>
+        <p id='cc'></p>
+       				
+            </div>
+        
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 ml-auto mr-0 text-center">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('select').formSelect();
+        });
+    </script>
+    
+    
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<script type="text/javascript">
+         $(document).keydown(function (event) {
+                if (event.keyCode == 13) {
+                    $('#sub').triggerHandler('click');            
+                     }
+                });
+        var RUL_list;
+        $("#sub").click(function(){  
+           
+        RUL_list='http://hd215.api.yesapi.cn/?service=App.Common_Weather.LiveWeather&city='+encodeURI($("#txt").val())+'&app_key=B50B2DB6C0835FBC1EB2D5BC2DFC7941';
+         
+         
+	$.ajax({
+        type:'post',
+        url: RUL_list,
+        dataType : 'json',
+        async : true, //默认为true 异步
+        success:function(data){   
+            console.log(data.data);
+            if(data.ret == '200'&&data.data.weather!='没有该地区数据'){
+//              $.each(data.data,function(key,arr){ 
+                            
+                            $("#city").html("<font size=4 color=white face=楷体>你的城市："+data.data.weather.city+"</font>");
+		            	    $("#date").html("<font size=3 color=white face=楷体>今天是："+data.data.weather.date+"</font>");
+		          			$("#time").html("<font size=3 color=white face=楷体>信息来源时间："+data.data.weather.time+"</font>"); 
+                            $("#air_level").html("<font size=3 color=white face=楷体>天气："+data.data.weather.weather+"</font>");
+                            $("#tem").html("<font size=3 color=white face=楷体>温度："+data.data.weather.tem+"</font>");
+                            $("#win").html("<font size=3 color=white face=楷体>风向："+data.data.weather.win+"</font>"); 
+                            $("#humidity").html("<font size=3 color=white face=楷体>湿度："+data.data.weather.humidity+"</font>"); 
+                            $("#air_pm25").html("<font size=3 color=white face=楷体>pm2.5指数："+data.data.weather.air_pm25+"</font>");
+                            $("#tips").html("<font size=3 color=white face=楷体>空气质量："+data.data.weather.air_level+"</font>");
+                            if(data.data.weather.weather=='晴'&&data.data.weather.air_level=='优'){
+     $("#cc").html("<font size=3 color=white face=楷体>运动建议：建议进行室外运动。如：法特莱克跑、快走、太极Fit、体态瑜伽、燃脂跑等</font>"); 
+     }
+     else{
+     $("#cc").html("<font size=3 color=white face=楷体>运动建议：建议进行室内运动。如：太极Fit、塑形操、有氧操、热舞操、瑜伽等</font>"); 
+     }
+		            		           
+//		          });
+            }else if(data.data.weather=='没有该地区数据'){
+            	
+                $("#city").html("<font size=3 color=brown face=楷体>没有该地区数据</font>");
+            	$("#date").html("<font size=3 color=brown face=楷体> </font>");
+            	$("#time").html("<font size=3 color=white face=楷体> </font>");  
+                $("#air_level").html("<font size=3 color=white face=楷体> </font>");
+                $("#win").html("<font size=3 color=white face=楷体> </font>");  
+                $("#humidity").html("<font size=3 color=white face=楷体> </font>");  
+                $("#tips").html("<font size=3 color=white face=楷体> </font>"); 
+                $("#air_pm25").html("<font size=3 color=white face=楷体> </font>");
+                  
+            	
+            }
+        },
+        error:function(data){
+             alert(data.ret);	
+        }
+         })
+     })
+     
+        
+        
+</script>
+</html>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>运动搭配</title>
+	
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="css/bootstrap.min2.css">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/tooplate2.css">
+</head>
+
+<body id="register">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <header class="mb-5">
+                    <h3 class="mt-0 white-text">运动搭配</h3>
+                    <p class="grey-text mb-4">本页面包含天气适配运动、运动轨迹查看以及运动小知识三个模块</p>
+                    <p class="grey-text">用户可以通过本页面查询到今日天气，后即可搭配合理运动，还可以查看今日运动轨迹。
+                    </p>
+                </header>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <form action="weather.html" method="post" class="tm-signup-form">
+                    <div class="text-right mt-4">
+                        <button type="submit" class="waves-effect btn-large btn-large-white px-4 tm-border-radius-0">天气适配运动</button>
+                    </div>
+                </form>
+                <form action="run.html" method="post" class="tm-signup-form">
+                    <div class="text-right mt-4">
+                        <button type="submit" class="waves-effect btn-large btn-large-white px-4 tm-border-radius-0">运动轨迹查看</button>
+                    </div>
+                </form>
+                <form action="timer.html" method="post" class="tm-signup-form">
+                    <div class="text-right mt-4">
+                        <button type="submit" class="waves-effect btn-large btn-large-white px-4 tm-border-radius-0">运动计时设置</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('select').formSelect();
+        });
+    </script>
+</body>
+
+</html>
